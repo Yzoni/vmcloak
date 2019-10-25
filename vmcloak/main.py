@@ -477,7 +477,7 @@ def register(vmname, cuckoo, tags):
 
 def do_snapshot(image, vmname, ipaddr, resolution, ramsize, cpus,
                 hostname, adapter, vm_visible, vrde, vrde_port, interactive):
-    m, h = initvm(image, name=vmname, multi=True, ramsize=ramsize, cpus=cpus)
+    m, h = initvm(image, name=vmname, multi=False, ramsize=ramsize, cpus=cpus)
 
     if vrde:
         m.vrde(port=vrde_port)
