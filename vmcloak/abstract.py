@@ -299,7 +299,7 @@ class WindowsAutounattended(OperatingSystem):
     osdir = os.path.join("sources", "$oem$", "$1")
     dummy_serial_key = None
     genisoargs = [
-        "-no-emul-boot", "-iso-level", "2", "-udf", "-J", "-l", "-D", "-N",
+        "-no-emul-boot", "-iso-level", "3", "-udf", "-J", "-l", "-D", "-N",
         "-joliet-long", "-relaxed-filenames",
     ]
 
