@@ -329,6 +329,9 @@ def install(name, dependencies, vm_visible, vrde, vrde_port, recommended, debug)
 
     a = Agent(image.ipaddr, image.port)
     a.ping()
+    
+    # Set static ip since w10 happens to change it on reboots
+    a.static_ip(image.ipaddr, image.netmask, image.gateway, h.interface)
 
     settings = {}
     deps = []
