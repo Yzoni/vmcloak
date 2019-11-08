@@ -16,7 +16,6 @@ class Syscalldrv(Dependency):
 
     def run(self):
         self.upload_dependency("C:\\syscalldrv-x64-1_0.zip")
-        self.a.extract("C:\\syscalldrv", "C:\\syscalldrv-x64-1_0.zip")
-        
+
         # Enable powershell script execution
         self.a.execute("Set-ExecutionPolicy RemoteSigned -force")
