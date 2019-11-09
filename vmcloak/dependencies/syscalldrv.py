@@ -19,3 +19,5 @@ class Syscalldrv(Dependency):
 
         # Enable powershell script execution
         self.a.execute("Set-ExecutionPolicy RemoteSigned -force")
+        self.a.execute("bcdedit /set nointegritychecks off")
+        self.a.execute("bcdedit /set testsigning on")
