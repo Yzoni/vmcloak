@@ -48,27 +48,20 @@
             <RunSynchronous>
                 <RunSynchronousCommand wcm:action="add">
                     <Order>1</Order>
+                    <Path>reg add HKLM\System\CurrentControlSet\Control\Network\NewNetworkWindowOff</Path>
+                    <WillReboot>Never</WillReboot>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>2</Order>
                     <Path>reg add HKLM\Software\Microsoft\Windows\CurrentVersion\Run /v Agent /t REG_SZ /d C:\vmcloak\bootstrap.bat</Path>
                     <WillReboot>Never</WillReboot>
                 </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Path>reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v EnableFirstLogonAnimation /d 0 /t REG_DWORD /f</Path>
+                    <WillReboot>Never</WillReboot>
+                </RunSynchronousCommand>
             </RunSynchronous>
-        </component>
-        <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="@ARCH@" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <SkipAutoActivation>true</SkipAutoActivation>
-        </component>
-        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="@ARCH@" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ComputerName>@COMPUTERNAME@</ComputerName>
-            <ShowWindowsLive>false</ShowWindowsLive>
-        </component>
-        <component name="Security-Malware-Windows-Defender" processorArchitecture="@ARCH@" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <DisableAntiSpyware>true</DisableAntiSpyware>
-        </component>
-        <component name="Networking-MPSSVC-Svc" processorArchitecture="@ARCH@" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <DisableStatefulFTP>true</DisableStatefulFTP>
-            <DisableStatefulPPTP>true</DisableStatefulPPTP>
-            <DomainProfile_EnableFirewall>false</DomainProfile_EnableFirewall>
-            <PrivateProfile_EnableFirewall>false</PrivateProfile_EnableFirewall>
-            <PublicProfile_EnableFirewall>false</PublicProfile_EnableFirewall>
         </component>
     </settings>
     <settings pass="windowsPE">
