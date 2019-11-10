@@ -332,7 +332,7 @@ def startvm(name, dependencies, vm_visible, vrde, vrde_port, recommended, debug)
     a.ping()
 
     log.debug("Started VM")
-    raw_input("Enter to exit...")
+    raw_input("Press Enter to exit... (Do not shutdown manually!)")
 
     if image.vm == "virtualbox":
         a.shutdown()
