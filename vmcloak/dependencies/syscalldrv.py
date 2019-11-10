@@ -10,8 +10,8 @@ class Syscalldrv(Dependency):
     exes = [{
         "version": "1.0",
         "arch": "amd64",
-        "url": "https://user.fm/files/v2-d9bd6f905c255a93c063a44149ede708/syscalldrv-x64-1_0.zip",
-        "sha1": "604ec3745fbc5b07771db93e88751904558ab27e",
+        "url": "https://user.fm/files/v2-8401285eba7292b56ba09a8ebb5b4239/syscalldrv-x64-1_0.zip",
+        "sha1": "88812d039044ff880095a29ad1210c4edad4bf1f",
     }]
 
     def run(self):
