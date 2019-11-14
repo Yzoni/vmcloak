@@ -288,11 +288,14 @@ def download_file(url, filepath):
 
     start = time.time()
 
-    try:
-        r = requests.get(url, headers=headers).content
-    except requests.RequestException as e:
-        log.warn("Failed to download file from '%s', got error: %s", url, e)
-        return
+    for attempts in range(0, 3):
+        try:
+            r = requests.get(url, headers=headers).content
+            break
+        except requests.RequestException as e:
+            log.warn("Failed to download file from '%s', got error: %s", url, e)
+            if attempts < 3:
+                log.warn("Retrying...")
 
     log.debug(
         "Successfully downloaded file '{}' ({:.2f}MB) from '{}' in "
