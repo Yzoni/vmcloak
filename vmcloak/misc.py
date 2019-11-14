@@ -289,7 +289,7 @@ def download_file(url, filepath):
     start = time.time()
 
     try:
-        r = requests.get(url, headers=headers, verify=False).content
+        r = requests.get(url, headers=headers).content
     except requests.RequestException as e:
         log.warn("Failed to download file from '%s', got error: %s", url, e)
         return
