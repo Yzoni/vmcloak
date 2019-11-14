@@ -443,8 +443,13 @@ class Dependency(object):
             return
 
         for url in urls:
-            download_file(url, self.filepath)
-
+            for attempts in range(0, 3):
+                try:
+                    download_file(url, self.filepath)
+                except:
+                    if attempts < 3:
+                        log.exception('Failed to download file, retrying...')
+                    continue
             if not os.path.exists(self.filepath):
                 continue
 
