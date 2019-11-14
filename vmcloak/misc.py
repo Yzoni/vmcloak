@@ -296,6 +296,7 @@ def download_file(url, filepath):
             log.warn("Failed to download file from '%s', got error: %s", url, e)
             if attempts < 3:
                 log.warn("Retrying...")
+                time.sleep(3)
             else:
                 return
 
