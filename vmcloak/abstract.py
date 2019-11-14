@@ -450,7 +450,8 @@ class Dependency(object):
                     if attempts < 3:
                         log.exception('Failed to download file, retrying...')
                         time.sleep(3)
-                    continue
+                else:
+                    break
             if not os.path.exists(self.filepath):
                 continue
 
