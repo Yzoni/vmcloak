@@ -448,7 +448,7 @@ class Dependency(object):
                     download_file(url, self.filepath)
                 except:
                     if attempts < 3:
-                        log.exception('Failed to download file, retrying...')
+                        log.warn('Failed to download file, retrying...')
                         time.sleep(3)
                 else:
                     break
