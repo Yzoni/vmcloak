@@ -344,6 +344,55 @@ def startvm(name, dependencies, vm_visible, vrde, vrde_port, recommended, debug)
     else:
         a.reboot()
 
+@main.command()
+@click.argument("uploadfile")
+@click.argument("fileorigin")
+@click.argument("filedestination")
+@click.option("--vm-visible", is_flag=True)
+@click.option("--vrde", is_flag=True, help="Enable the VirtualBox Remote Display Protocol.")
+@click.option("--vrde-port", default=3389, help="Specify the VRDE port.")
+@click.option("-d", "--debug", is_flag=True, help="Install applications in debug mode.")
+def uploadfile(name, fileorigin, filedestination, vm_visible, vrde, vrde_port, debug):
+    if debug:
+        vrde = True
+        log.setLevel(logging.DEBUG)
+
+    session = Session()
+
+    image = session.query(Image).filter_by(name=name).first()
+    if not image:
+        log.error("Image not found: %s", name)
+        exit(1)
+
+    if image.mode != "normal":
+        log.error("You can't install dependencies in this image as you have "
+                  "already made snapshots with it!")
+        log.error("Please vmcloak-clone it and update the clone.")
+        exit(1)
+
+    m, h = initvm(image)
+
+    if image.vm == "virtualbox":
+        if vrde:
+            m.vrde(port=vrde_port)
+        m.start_vm(visible=vm_visible)
+
+    wait_for_host(image.ipaddr, image.port)
+
+    a = Agent(image.ipaddr, image.port)
+    a.ping()
+    
+    a.upload(fileorigin, filedestination)
+
+    if image.vm == "virtualbox":
+        a.shutdown()
+        m.wait_for_state(shutdown=True)
+
+        m.remove_hd()
+        m.compact_hd(image.path)
+        m.delete_vm()
+    else:
+        a.reboot()
 
 @main.command()
 @click.argument("name")
