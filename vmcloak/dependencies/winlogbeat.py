@@ -10,8 +10,8 @@ class Winlogbeat(Dependency):
     exes = [{
         "version": "7.4.2",
         "arch": "amd64",
-        "url": "https://user.fm/files/v2-52e20ae9ab546f876052c3e3271ef59f/winlogbeat.zip",
-        "sha1": "8a93aae79c794d94f37f5a86eb5ea65c0c80389d",
+        "url": "https://user.fm/files/v2-afb4c1b0c153b96c5b8e6e081bb620a0/winlogbeat.zip",
+        "sha1": "69a09fdf6916d6b900c304e68936dd6030752825",
     }]
 
     def run(self):
