@@ -431,6 +431,8 @@ def install(name, dependencies, vm_visible, vrde, vrde_port, recommended, debug)
 
     a = Agent(image.ipaddr, image.port)
     a.ping()
+
+    a.hostname(random_string(8, 16))
     
     # Set static ip since w10 happens to change it on reboots
     a.static_ip(image.ipaddr, image.netmask, image.gateway, h.interface)
@@ -593,15 +595,16 @@ def do_snapshot(image, vmname, ipaddr, resolution, ramsize, cpus,
     a = Agent(image.ipaddr, image.port)
     a.ping()
 
-    # Assign a new hostname.
-    a.hostname(hostname)
-    a.reboot()
-    a.kill()
+    if hostname:
+        # Assign a new hostname.
+        a.hostname(hostname)
+        a.reboot()
+        a.kill()
 
-    # Wait for the reboot to kick in.
-    time.sleep(10)
-    wait_for_host(image.ipaddr, image.port)
-    a.ping()
+        # Wait for the reboot to kick in.
+        time.sleep(10)
+        wait_for_host(image.ipaddr, image.port)
+        a.ping()
 
     if resolution:
         width, height = resolution.split("x")
