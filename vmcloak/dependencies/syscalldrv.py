@@ -6,13 +6,13 @@ from vmcloak.abstract import Dependency
 class Syscalldrv(Dependency):
     name = "syscalldrv"
     description = "Systemwide logger for system calls"
-    default = "1.2"
+    default = "1.3"
     exes = [{
-        "version": "1.2",
+        "version": "1.3",
         "arch": "amd64",
-        "url": "https://user.fm/files/v2-9491c2772dfc285cbc3a83609f5d2a3a/syscalldrv-x64-1_2.zip",
-        "sha1": "5d984667a21cd0d480c36f7d994472c6d5eaf590",
+        "url": "https://user.fm/files/v2-af78a095c5fdc4a8c6549737b7c8c65b/syscalldrv-x64-1_3.zip",
+        "sha1": "656155daf2f780effbc6c5de3ef1ccf9bde817aa",
     }]
 
     def run(self):
-        self.upload_dependency("C:\\syscalldrv-x64-1_2.zip")
+        self.upload_dependency("C:\\syscalldrv-x64-1_3.zip")
